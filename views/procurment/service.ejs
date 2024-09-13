@@ -920,6 +920,9 @@
                 <button id="nextBtn" class="btn btn-primary" onclick="nextSection()">Next</button>
                 <button id="submitBtn" class="btn btn-success" style="display: none;" type="submit">Submit</button> <!-- Hidden by default -->
               </div>
+              <div class="text-center mt-5"></div>
+                <button class="btn btn-secondary" onclick="printPage()">Print Page</button>
+              </div>
           
             </main>
           
@@ -943,7 +946,27 @@
             <!-- Template Main JS File -->
             <script src="/panel/js/main.js"></script>
           
-           
+            <script>
+              // Function to print the entire page
+              function printPage() {
+                const sections = document.querySelectorAll('.section');
+                
+                // Temporarily make all sections visible
+                sections.forEach(section => {
+                  section.classList.add('active');
+                });
+                
+                // Print the page
+                window.print();
+            
+                // Revert sections back to the original state (hide non-active sections)
+                sections.forEach((section, index) => {
+                  if (index !== currentSectionIndex) {
+                    section.classList.remove('active');
+                  }
+                });
+              }
+            </script>
            <!-- <script>
         // Function to handle image upload and preview
         function showSignature(input) {
